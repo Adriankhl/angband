@@ -716,7 +716,7 @@ bool dir_create(const char *path) { return false; }
  * For information on what these are meant to do, please read the header file.
  */
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && !defined(HAVE_DIRENT_H)
 
 
 /* System-specific struct */
@@ -795,7 +795,7 @@ void my_dclose(ang_dir *dir)
 	mem_free(dir);
 }
 
-#else /* WINDOWS */
+#else /* defined(WINDOWS) && !defined(HAVE_DIRENT_H) */
 
 #ifdef HAVE_DIRENT_H
 
